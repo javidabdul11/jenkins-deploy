@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2b1d2e19-879b-43db-9c01-b4f3bdb11950" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="jenkins-deployFlow" doc:id="7713e33d-3e05-48a1-9986-5ea86ba43b35" >
+		<http:listener doc:name="Listener" doc:id="3faf5a88-601c-499a-ace8-2ed9edce9ca1" config-ref="HTTP_Listener_config" path="/new"/>
+		<set-payload value='#["this application is deployed to cloudhub by jenkins"]' doc:name="Set Payload" doc:id="3f295d28-e5a3-41dd-8fe1-491e1aa695d2" />
+	</flow>
+</mule>
